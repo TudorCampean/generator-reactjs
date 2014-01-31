@@ -1,6 +1,6 @@
 {
   "name": "generator-reactjs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Scaffold out a front-end web app with ReactJS",
   "keywords": [
     "yeoman-generator",
