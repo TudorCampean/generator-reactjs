@@ -6,26 +6,26 @@
     "grunt":                    "~0.4.2",
     "grunt-contrib-copy":       "~0.5.0",
     "grunt-contrib-concat":     "~0.3.0",
-    "grunt-contrib-uglify":     "~0.2.7",
+    "grunt-contrib-uglify":     "~0.3.2",
     <% if (includeCompass) { %>
     "grunt-contrib-compass":    "~0.7.0",
     <% } %>
     "grunt-contrib-jshint":     "~0.8.0",
-    "grunt-contrib-cssmin":     "~0.7.0",
-    "grunt-contrib-connect":    "~0.5.0",
+    "grunt-contrib-cssmin":     "~0.8.0",
+    "grunt-contrib-connect":    "~0.7.0",
     "grunt-contrib-clean":      "~0.5.0",
-    "grunt-contrib-htmlmin":    "~0.1.3",
+    "grunt-contrib-htmlmin":    "~0.2.0",
     <% if (browserify) { %>
-    "grunt-browserify":    "~1.3.0",
-    "reactify":  "~0.5.1",
+    "grunt-browserify":         "~2.0.0",
+    "reactify":                 "~0.8.1",
     <% } %>
     <% if (requireJS) { %>
     "grunt-bower-requirejs":    "~0.7.0",
     "grunt-contrib-requirejs":  "~0.4.1",
     <% } else { %>
-    "grunt-bower-install":      "~0.5.0",
+    "grunt-bower-install":      "~1.0.0",
     <% } %>
-    "grunt-contrib-imagemin":   "~0.2.0",
+    "grunt-contrib-imagemin":   "~0.5.0",
     "grunt-contrib-watch":      "~0.5.2",
     <% if (testFramework === 'jasmine') { %>
     "grunt-contrib-jasmine":    "~0.4.2",
@@ -34,16 +34,16 @@
     <% } %>
     "grunt-react":              "~0.6.0",
     "grunt-rev":                "~0.1.0",
-    "grunt-autoprefixer":       "~0.2.0",
+    "grunt-autoprefixer":       "~0.7.1",
     "grunt-usemin":             "~2.0.0",
     <% if (includeModernizr) { %>
-    "grunt-modernizr":          "~0.4.0",
+    "grunt-modernizr":          "~0.5.1",
     <% } %>
     "grunt-newer":              "~0.6.0",
-    "grunt-svgmin":             "~0.2.0",
+    "grunt-svgmin":             "~0.3.1",
     "grunt-concurrent":         "~0.4.0",
-    "load-grunt-tasks":         "~0.2.0",
-    "time-grunt":               "~0.2.0",
+    "load-grunt-tasks":         "~0.3.0",
+    "time-grunt":               "~0.2.9",
     "jshint-stylish":           "~0.1.3"
   },
   "engines": {

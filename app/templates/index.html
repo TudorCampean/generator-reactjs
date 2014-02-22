@@ -78,16 +78,16 @@
         </div>
         <% } %>
         <!-- build:js scripts/vendor.js -->
-        <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/jquery/dist/jquery.js"></script>
         <% if (includeBootstrap && includeCompass) { %>
-        <script src="bower_components/sass-bootstrap/dist/js/bootstrap.min.js"></script>  
+        <script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
         <% } else if (includeBootstrap) { %>
-        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>  
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <% } %>
         <% if (reactAddons) { %>
-        <script src="bower_components/react/react-with-addons.min.js"></script>
+        <script src="bower_components/react/react-with-addons.js"></script>
         <% } else { %>
-        <script src="bower_components/react/react.min.js"></script>
+        <script src="bower_components/react/react.js"></script>
         <% } %>
         <% if (requireJS) { %><script src="bower_components/requirejs/require.js"></script><% } %>
         <!-- endbuild -->
