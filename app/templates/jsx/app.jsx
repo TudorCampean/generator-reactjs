@@ -1,11 +1,12 @@
 /** @jsx React.DOM */
 /*jslint indent: 2, node: true, nomen: true, browser: true*/
-/*global Class, React, require */
+/*global React, require */
+
 'use strict';
 module.exports = React.createClass({
   getInitialState: function () {
     return {
-      message : 'Click me!'
+      message : 'Always a pleasure scaffolding your apps.'
     };
   },
   reverse: function (event) {
@@ -15,7 +16,17 @@ module.exports = React.createClass({
   },
   render: function () {
 	return (
-      <h1 onClick={this.reverse}>{this.state.message}</h1>
+      <div>
+        <p className="lead">{this.state.message}</p>
+        <p>
+          <button
+            type="button"
+            className="btn btn-success"
+            onClick={this.reverse}>
+              Click me!
+          </button>
+        </p>
+      </div>
 	);
   }
 });
