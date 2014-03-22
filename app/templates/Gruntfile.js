@@ -30,23 +30,15 @@ module.exports = function (grunt) {
     watch: {
       gruntfile: {
         files: ['Gruntfile.js']
-      },<% if (browserify) { %>
+      },
       browserify: {
         files: ['<%%= yeoman.app %>/jsx/{,*/}*.jsx'],
         tasks: ['browserify']
-      },<% } else { %>
-      react: {
-        files: ['<%%= yeoman.app %>/jsx/{,*/}*.jsx'],
-        tasks: ['react:app']
-      },<% } if (includeCompass) { %>
-      compass: {
-        files: ['<%%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer']
-      },<% } else { %>
+      },
       styles: {
         files: ['<%%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
-      },<% } %>
+      },
       livereload: {
         options: {
           livereload: '<%%= connect.options.livereload %>'
@@ -108,20 +100,7 @@ module.exports = function (grunt) {
       },
       server: '.tmp'
     },
-  
-    // Make sure code styles are up to par and there are no obvious mistakes
-    jshint: {
-      options: {
-        jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
-      },
-      all: [
-        'Gruntfile.js',
-        '<%%= yeoman.app %>/scripts/{,*/}*.js',
-        'test/spec/{,*/}*.js'
-      ]
-    },
-    <% if (testFramework === 'mocha') { %>
+
     // Mocha testing framework configuration options
     mocha: {
       all: {
@@ -131,75 +110,6 @@ module.exports = function (grunt) {
         }
       }
     },
-    <% } else if (testFramework === 'jasmine') { %>
-    // Jasmine testing framework configuration options
-    jasmine: {
-      all: {
-        options: {
-          specs: 'test/spec/{,*/}*.js'
-        }
-      }
-    },
-    <% } %>
-    // react compilation task
-    react: {
-      app: {
-        files: [
-          {
-            expand: true,
-            cwd: '<%%=  yeoman.app %>/jsx/',
-            src: ['**/*.jsx'],
-            dest: '<%%=  yeoman.app %>/scripts/',
-            ext: '.js'
-          }
-        ]
-      }
-    },
-    <% if (includeCompass) { %>    
-    // Compiles Sass to CSS and generates necessary files if requested
-    compass: {
-      options: {
-        sassDir: '<%%= yeoman.app %>/styles',
-        cssDir: '.tmp/styles',
-        generatedImagesDir: '.tmp/images/generated',
-        imagesDir: '<%%= yeoman.app %>/images',
-        javascriptsDir: '<%%= yeoman.app %>/scripts',
-        fontsDir: '<%%= yeoman.app %>/styles/fonts',
-        importPath: '<%%= yeoman.app %>/bower_components',
-        httpImagesPath: '/images',
-        httpGeneratedImagesPath: '/images/generated',
-        httpFontsPath: '/styles/fonts',
-        relativeAssets: false,
-        assetCacheBuster: false
-      },
-      dist: {
-        options: {
-          generatedImagesDir: '<%%=  yeoman.dist %>/images/generated'
-        }
-      },
-      server: {
-        options: {
-          debugInfo: true
-        }
-      }
-    },
-    <% } %>
-    <% if (requireJS) { %>
-    requirejs: {
-      compile: {
-        options: {
-          baseUrl: '<%%= yeoman.app %>/scripts',
-          wrap: true,
-          name: '../bower_components/almond/almond',
-          preserveLicenseComments: false,
-          optimize: 'uglify', // 'none',
-          mainConfigFile: '<%%= yeoman.app %>/scripts/main.js',
-          include: ['main'],
-          out: '<%%= yeoman.dist %>/scripts/main.js'
-        }
-      }
-    },
-    <% } if (browserify) { %>
     browserify: {
       app: {
         files: {
@@ -209,9 +119,9 @@ module.exports = function (grunt) {
           transform: ['reactify']
         }
       }
-    },<% } %>
+    },
     
-      // Add vendor prefixed styles
+    // Add vendor prefixed styles
     autoprefixer: {
       options: {
         browsers: ['last 1 version']
@@ -240,6 +150,30 @@ module.exports = function (grunt) {
       }
     },
 
+    // Less compiler
+    less: {
+      compile: {
+        options: {
+          strictMath: true,
+          sourceMap: true,
+          outputSourceFiles: true,
+          sourceMapURL: 'main.css.map',
+          sourceMapFilename: '.tmp/styles/main.css.map'
+        },
+        files: {
+          '.tmp/styles/main.css': '<%%= yeoman.app %>/styles/main.less'
+        }
+      },
+      minify: {
+        options: {
+          cleancss: true,
+          report: 'min'
+        },
+        files: {
+          '<%%= yeoman.dist %>/styles/main.min.css': '.tmp/styles/main.css',
+        }
+      }
+    },
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
@@ -337,11 +271,10 @@ module.exports = function (grunt) {
           dest: '<%%= yeoman.dist %>',
           src: [
             '*.{ico,png,txt}',
-            '.htaccess',
             'images/{,*/}*.webp',
             '{,*/}*.html',
-            'styles/fonts/{,*/}*.*'<% if (includeBootstrap) { %>,
-            'bower_components/' + (this.includeCompass ? 'sass-' : '') + 'bootstrap/' + (this.includeCompass ? 'fonts/' : 'dist/fonts/') + '*.*'<% } %>
+            'styles/fonts/{,*/}*.*',
+            'bower_components/bootstrap/{,*/}*.*'
           ]
         }]
       },
@@ -353,54 +286,28 @@ module.exports = function (grunt) {
         src: '{,*/}*.css'
       }
     },
-    <% if (includeModernizr) { %>
-      // Generates a custom Modernizr build that includes only the tests you
-      // reference in your app
-    modernizr: {
-      devFile: '<%%= yeoman.app %>/bower_components/modernizr/modernizr.js',
-      outputFile: '<%%= yeoman.dist %>/bower_components/modernizr/modernizr.js',
-      files: [
-        '<%%= yeoman.dist %>/scripts/{,*/}*.js',
-        '<%%= yeoman.dist %>/styles/{,*/}*.css',
-        '!<%%= yeoman.dist %>/scripts/vendor/*'
-      ],
-      uglify: true
-    },<% } %>
-                                
+
     // Run some tasks in parallel to speed up build process
     concurrent: {
-      server: [<% if (includeCompass) { %>
-        'compass:server',<% } else { %>
-        'copy:styles',<% } if (browserify) { %>
-        'browserify'<% } else { %>
-        'react'<% } %>
+      server: [
+        'less:compile',
+        'copy:styles',
+        'browserify'
       ],
-      test: [<% if (includeCompass) { %>
-        'compass:server',<% } else { %>
-        'copy:styles',<% } if (browserify) { %>
-        'browserify'<% } else { %>
-        'react'<% } %>
+      test: [
+        'less:compile',
+        'copy:styles',
+        'browserify'
       ],
-      dist: [<% if (includeCompass) { %>
-        'compass:dist',<% } else { %>
-        'copy:styles',<% } if (browserify) { %>
-        'browserify',<% } else { %>
-        'react',<% } %>
+      dist: [
+        'less:compile',
+        'copy:styles',
+        'browserify',
         'imagemin',
         'svgmin',
         'htmlmin'
       ]
     }
-    <% if (requireJS) { %>,
-    bower: {
-      options: {
-        exclude: ['modernizr']
-      },
-      all: {
-        rjsConfig: '<%%= yeoman.app %>/scripts/main.js'
-      }
-    }
-    <% } %>
   });
                                                     
   grunt.registerTask('serve', function (target) {
@@ -421,9 +328,8 @@ module.exports = function (grunt) {
     'clean:server',
     'concurrent:test',
     'autoprefixer',
-    'connect:test',<% if (testFramework === 'mocha') { %>
-    'mocha'<% } else if (testFramework === 'jasmine') { %>
-    'jasmine'<% } %>
+    'connect:test',
+    'mocha'
   ]);
   
   grunt.registerTask('build', [
@@ -434,9 +340,7 @@ module.exports = function (grunt) {
     'autoprefixer',
     'concat',
     'cssmin',
-    'uglify',<% if (requireJS) { %>
-    'requirejs',<% } %><% if (includeModernizr) { %>
-    'modernizr',<% } %>
+    'uglify',
     'copy:dist',
     'rev',
     'usemin'
@@ -448,4 +352,3 @@ module.exports = function (grunt) {
     'build'
   ]);
 };
-    

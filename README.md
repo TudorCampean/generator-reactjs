@@ -1,20 +1,20 @@
 # ReactJS App generator
 
+[![Dependency Status](https://david-dm.org/TudorCampean/generator-reactjs.svg?theme=shields.io)](https://david-dm.org/TudorCampean/generator-reactjs#info=dependencies&view=table)
+[![devDependency Status](https://david-dm.org/TudorCampean/generator-reactjs/dev-status.svg?theme=shields.io)](https://david-dm.org/TudorCampean/generator-reactjs#info=devDependencies&view=table)
+
 Yeoman generator that scaffolds out a ReactJS web app.
-Based on yeoman/generator-webapp and generator-react
+Based on yeoman/generator-webapp.
+
 ## Features
 
 * CSS Autoprefixing (new)
 * Built-in preview server with LiveReload
-* Automagically lint your scripts
 * Awesome Image Optimization (via OptiPNG, pngquant, jpegtran and gifsicle)
 * Mocha Unit Testing with PhantomJS
-* Optional - Modernizr 
-* Optional - Bootstrap
-* Optional - Sass + Compass
+* Bootstrap
 * Dependency managers
-* Optional - RequireJS AMD support
-* Optional - Browserify 
+*  Browserify
 For more information on what `generator-reactjs` can do for you, take a look at the [Grunt tasks](https://github.com/TudorCampean/generator-reactjs/blob/master/app/templates/_package.json) used in `package.json`.
 
 ## Getting Started
@@ -30,9 +30,6 @@ For more information on what `generator-reactjs` can do for you, take a look at 
 
   Skips the automatic execution of `bower` and `npm` after scaffolding has finished.
 
-* `--test-framework=<framework>`
-
-  Defaults to `mocha`. Can be switched for another supported testing framework like `jasmine`.
 
 ## Contribute
 
