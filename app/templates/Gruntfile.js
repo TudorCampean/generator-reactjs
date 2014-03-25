@@ -39,6 +39,10 @@ module.exports = function (grunt) {
         files: ['<%%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
       },
+      less: {
+        files: ['<%%= yeoman.app %>/styles/{,*/}*.less'],
+        tasks: ['less:compile', 'autoprefixer']
+      },
       livereload: {
         options: {
           livereload: '<%%= connect.options.livereload %>'

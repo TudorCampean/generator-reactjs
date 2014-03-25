@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
-/*jslint indent: 2, node: true, nomen: true, browser: true*/
-/*global React, require */
+/*jshint indent: 2, node: true, nomen: true, browser: true*/
+/*global React */
 
 'use strict';
 module.exports = React.createClass({
@@ -16,6 +16,7 @@ module.exports = React.createClass({
   },
   render: function () {
 	return (
+      /* jshint ignore:start */
       <div>
         <p className="lead">{this.state.message}</p>
         <p>
@@ -27,6 +28,7 @@ module.exports = React.createClass({
           </button>
         </p>
       </div>
+      /* jshint ignore:end */
 	);
   }
 });
