@@ -84,6 +84,12 @@ ReactGenerator.prototype.browserify = function browserify() {
   this.copy('jsx/main.jsx', 'app/jsx/main.jsx');
 };
 
+ReactGenerator.prototype.testFiles = function testFiles() {
+  this.copy('karma.conf.cofee', 'karma.conf.cofee');
+  this.copy('test/test.coffee', 'test/test.coffee');
+  this.copy('test/specs/appSpec.coffee', 'test/specs/appSpec.coffee');
+};
+
 ReactGenerator.prototype.install = function () {
   if (this.options['skip-install']) {
     return;
