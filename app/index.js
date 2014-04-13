@@ -69,8 +69,8 @@ ReactGenerator.prototype.browserify = function browserify() {
 
 ReactGenerator.prototype.testFiles = function testFiles() {
   this.copy('karma.conf.coffee', 'karma.conf.coffee');
-  this.copy('test/test.coffee', 'test/test.coffee');
-  this.copy('test/specs/appSpec.coffee', 'test/specs/appSpec.coffee');
+  this.copy('testTemplate/test.coffee', 'test/test.coffee');
+  this.copy('testTemplate/specs/appSpec.coffee', 'test/specs/appSpec.coffee');
 };
 
 ReactGenerator.prototype.install = function () {
