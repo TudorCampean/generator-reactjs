@@ -284,7 +284,14 @@ module.exports = function (grunt) {
         src: '**/*.css'
       }
     },
-
+    
+    // Unit test
+    karma: {
+      unit: {
+        configFile: 'karma.conf.coffee'
+      }
+    },
+    
     // Run some tasks in parallel to speed up build process
     concurrent: {
       server: [

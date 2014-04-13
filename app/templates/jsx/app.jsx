@@ -18,12 +18,14 @@ module.exports = React.createClass({
 	return (
       /* jshint ignore:start */
       <div>
-        <p className="lead">{this.state.message}</p>
+        <p ref="p" className="lead">{this.state.message}</p>
         <p>
           <button
             type="button"
             className="btn btn-success"
+            ref="button"
             onClick={this.reverse}>
+            <span className="glyphicon glyphicon-refresh"></span>
               Click me!
           </button>
         </p>
@@ -32,3 +34,4 @@ module.exports = React.createClass({
 	);
   }
 });
+

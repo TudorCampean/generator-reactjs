@@ -9,23 +9,6 @@ var yeoman = require('yeoman-generator');
 var ReactGenerator = module.exports = function ReactGenerator(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
 
-  // setup the test-framework property, Gruntfile template will need this
-  this.testFramework = options['test-framework'] || 'mocha';
-
-  // for hooks to resolve on mocha by default
-  options['test-framework'] = this.testFramework;
-
-  // resolved to mocha by default (could be switched to jasmine for instance)
-  this.hookFor('test-framework', {
-    as: 'app',
-    options: {
-      options: {
-        'skip-install': options['skip-install-message'],
-        'skip-message': options['skip-install']
-      }
-    }
-  });
-
   this.options = options;
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 };
@@ -85,7 +68,7 @@ ReactGenerator.prototype.browserify = function browserify() {
 };
 
 ReactGenerator.prototype.testFiles = function testFiles() {
-  this.copy('karma.conf.cofee', 'karma.conf.cofee');
+  this.copy('karma.conf.coffee', 'karma.conf.coffee');
   this.copy('test/test.coffee', 'test/test.coffee');
   this.copy('test/specs/appSpec.coffee', 'test/specs/appSpec.coffee');
 };

@@ -10,14 +10,14 @@ module.exports = () ->
     Render = ReactTestUtils.renderIntoDocument
     Simulate = ReactTestUtils.Simulate
 
-  it "Check Text Assignment", () ->
+  it 'Check Text Assignment', () ->
     app = `<App />`
     Render app
     
     expect(app.refs.p).to.exist
     expect(app.refs.p.getDOMNode().innerHTML).to.equal 'Always a pleasure scaffolding your apps.'
   
-  it "Responds to click", () ->
+  it 'Responds to click', () ->
     app = `<App />`
     Render app
 

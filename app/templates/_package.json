@@ -35,7 +35,7 @@
     "karma-firefox-launcher": "^0.1.3",
     "karma-coffee-preprocessor": "^0.2.1",
     "coffee-script": "^1.7.1",
-    "karma-browserify": "^0.2.0",
+    "karma-browserify": "git://github.com/TudorCampean/karma-browserify.git",
     "karma-spec-reporter": "0.0.12"
   },
   "engines": {
