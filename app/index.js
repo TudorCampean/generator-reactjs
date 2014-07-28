@@ -21,8 +21,10 @@ ReactGenerator.prototype.welcome = function welcome() {
   console.log('Out of the box I include HTML5 Boilerplate, ReactJS and Bootstrap');
 };
 
-ReactGenerator.prototype.gruntfile = function gruntfile() {
-  this.template('Gruntfile.js','Gruntfile.js');
+ReactGenerator.prototype.gulpfile = function gruntfile() {
+  this.template('Gulpfile.js','Gulpfile.js');
+  this.mkdir('gulp');
+  this.bulkDirectory('gulp', 'gulp')
 };
 
 ReactGenerator.prototype.app = function app() {
