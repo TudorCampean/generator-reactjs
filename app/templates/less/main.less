@@ -1,5 +1,17 @@
-@import '../bower_components/bootstrap/less/bootstrap';
-@icon-font-path: '../bower_components/bootstrap/fonts/';
+@font-face {
+    font-family: 'robotolight';
+    src: url('../fonts/Roboto-Light-webfont.eot');
+    src: url('../fonts/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Roboto-Light-webfont.woff') format('woff'),
+         url('../fonts/Roboto-Light-webfont.ttf') format('truetype'),
+         url('../fonts/Roboto-Light-webfont.svg#robotolight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import 'variables';
+@import 'bootstrap';
+@icon-font-path: '../fonts/';
 
 .browsehappy {
     margin: 0.2em 0;
@@ -12,6 +24,9 @@
 body {
     padding-top: 20px;
     padding-bottom: 20px;
+    background-image: url(/images/carbon_fibre.png);
+    background-position: initial;
+    background-repeat: inherit;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */

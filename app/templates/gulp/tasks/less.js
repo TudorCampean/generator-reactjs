@@ -5,12 +5,11 @@ var gulp = require('gulp'),
   rev = require('gulp-rev'),
   handleErrors = require('../util/handleErrors'),
   gulpFilter = require('gulp-filter'),
-  csso = require('gulp-csso'),
   minifyCSS = require('gulp-minify-css')
 
 gulp.task('less', function () {
   var cssFilter = gulpFilter('**/*.css');
-  return gulp.src('src/less/main.less')
+  return gulp.src('./app/less/main.less')
     .pipe(sourcemaps.init())
     .pipe(less().on('error', handleErrors))
     .pipe(sourcemaps.write('maps'))

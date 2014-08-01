@@ -23,16 +23,11 @@ ReactGenerator.prototype.welcome = function welcome() {
 
 ReactGenerator.prototype.gulpfile = function gruntfile() {
   this.template('Gulpfile.js','Gulpfile.js');
-  this.mkdir('gulp');
   this.bulkDirectory('gulp', 'gulp')
 };
 
 ReactGenerator.prototype.app = function app() {
   this.mkdir('app');
-  this.mkdir('app/jsx');
-  this.mkdir('app/scripts');
-  this.mkdir('app/styles');
-  this.mkdir('app/images');
 };
 
 ReactGenerator.prototype.packageJSON = function packageJSON() {
@@ -44,29 +39,30 @@ ReactGenerator.prototype.git = function git() {
   this.copy('gitattributes', '.gitattributes');
 };
 
-ReactGenerator.prototype.bower = function bower() {
-  this.copy('bowerrc', '.bowerrc');
-  this.copy('_bower.json', 'bower.json');
-};
-
 ReactGenerator.prototype.h5bp = function h5bp() {
   this.copy('favicon.ico', 'app/favicon.ico');
   this.copy('404.html', 'app/404.html');
   this.copy('robots.txt', 'app/robots.txt');
 };
 
-ReactGenerator.prototype.mainStylesheet = function mainStylesheet() {
-  var css = 'styles/main.less';
-  this.copy(css, 'app/' + css);
-};
-
 ReactGenerator.prototype.writeIndex = function writeIndex() {
   this.copy('index.html', 'app/index.html');
 };
 
-ReactGenerator.prototype.browserify = function browserify() {
-  this.copy('jsx/app.jsx', 'app/jsx/app.jsx');
-  this.copy('jsx/main.jsx', 'app/jsx/main.jsx');
+ReactGenerator.prototype.styles = function styles() {
+  this.bulkDirectory('less', 'app/less')
+};
+
+ReactGenerator.prototype.scripts = function scripts() {
+  this.bulkDirectory('scripts', 'app/scripts')
+};
+
+ReactGenerator.prototype.fonts = function fonts() {
+  this.bulkDirectory('fonts', 'app/fonts')
+};
+
+ReactGenerator.prototype.images = function images() {
+  this.bulkDirectory('images', 'app/images')
 };
 
 ReactGenerator.prototype.testFiles = function testFiles() {
@@ -82,6 +78,8 @@ ReactGenerator.prototype.install = function () {
 
   var done = this.async();
   this.installDependencies({
+    bower: false,
+    npm: true,
     skipMessage: this.options['skip-install-message'],
     skipInstall: this.options['skip-install'],
     callback: done

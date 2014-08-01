@@ -16,6 +16,6 @@ module.exports = {
   end: function (title) {
     var taskTime = process.hrtime(startTime);
     var prettyTime = prettyHrtime(taskTime);
-    gutil.log('Finished', gutil.colors.green(title || "'bundle'"), 'in', gutil.colors.magenta(prettyTime));
+    gutil.log('Finished', gutil.colors.green(title || "'bundle'"), 'in', gutil.colors.yellow(prettyTime));
   }
 };
