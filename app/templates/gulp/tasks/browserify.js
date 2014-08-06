@@ -7,7 +7,6 @@
 */
 var gulp = require('gulp');
 var source = require('vinyl-source-stream');
-var gutil = require('gulp-util');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var bundleLogger = require('../util/bundleLogger');
@@ -15,36 +14,50 @@ var handleErrors = require('../util/handleErrors');
 
 gulp.task('browserify', function () {
 
-  var destinationDirectory = './dist/scripts/'
+  var destinationDirectory = './debug/scripts/';
   var files = [
     {
-      src: ['./compiled/app/app.js'],
+      src: ['./compiled/vendor.js'],
+      dest: 'vendor.js',
+      vendor: true
+    },
+    {
+      src: ['./compiled/reverter/index.js'],
+      dest: 'reverter.js'
+    },
+    {
+      src: ['./compiled/app.js'],
       dest: 'main.js'
-    }
-  ]
+    },
+  ];
 
-  var bundlers = []
+  var bundlers = [];
 
   files.forEach(function (file) {
-    var b = browserify({
+    var options = {
       // Specify the entry point of your app
       entries: file.src,
       // Add file extentions to make optional in your requires
       extensions: ['.js'],
-      debug: false,
       cache: {},
       packageCache: {},
-      fullPaths: true
-    })
-    b.dest = file.dest
-    bundlers.push(b)
-  })
+      fullPaths: false,
+    }
+    var b = browserify(options);
+    if (file.vendor){
+      b.require('react', {expose: 'react'})
+    } else {
+      b.external('react')
+    }
+    b.dest = file.dest;
+    bundlers.push(b);
+  });
 
   function _bundle(bundler) {
+    // Log when bundling starts
     bundleLogger.start("'" + bundler.dest + "'");
 
     bundler
-    // Enable source maps!
     .bundle()
     // Report compile errors
     .on('error', handleErrors)
@@ -56,19 +69,18 @@ gulp.task('browserify', function () {
     .pipe(gulp.dest(destinationDirectory))
     // Log when bundling completes!
     .on('end', function () {
-      bundleLogger.end("'" + bundler.dest + "'")
+      bundleLogger.end("'" + bundler.dest + "'");
     });
   }
 
   var bundle = function () {
-    // Log when bundling starts
     bundlers.forEach(_bundle);
   };
 
   if (global.isWatching) {
     bundlers.forEach(function (bundler) {
       watchify(bundler);
-    })
+    });
   }
 
 

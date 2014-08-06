@@ -9,4 +9,7 @@
 	To add a new task, simply add a new task file to gulp/tasks.
 */
 
-require('./gulp');
+global.$ = require('gulp-load-plugins')()
+global.gulp = require('gulp')
+
+require('./gulp')

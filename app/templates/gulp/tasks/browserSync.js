@@ -2,9 +2,9 @@ var browserSync = require('browser-sync');
 var gulp = require('gulp');
 
 gulp.task('browserSync', ['build'], function () {
-  browserSync.init(['dist/**'], {
+  browserSync.init(['debug/**'], {
     server: {
-      baseDir: ['app', 'dist']
+      baseDir: ['debug']
     }
   });
 });

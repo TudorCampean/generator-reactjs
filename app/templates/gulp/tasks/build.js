@@ -4,6 +4,6 @@ var gulp = require('gulp');
 var runSequence = require('run-sequence');
 
 gulp.task('build', function (callback) {
-  runSequence(['cleancss', 'react', 'copy.scripts'], ['less', 'copy.fonts', 'browserify', 'images'],
+  runSequence(['react', 'copy.scripts', 'copy.html', 'copy.fonts'], ['less', 'browserify', 'images'],
     callback);
 });
