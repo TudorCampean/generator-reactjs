@@ -1,6 +1,9 @@
-var handleErrors = require('../util/handleErrors')
+/*jshint indent: 2, node: true, nomen: true, browser: true*/
+/*global gulp, $ */
 
-const DEST = 'compiled'
+var handleErrors = require('../util/handleErrors');
+
+var DEST = 'compiled';
 
 gulp.task('react', function () {
   return gulp.src('app/scripts/**/*.jsx')
@@ -10,5 +13,5 @@ gulp.task('react', function () {
     .pipe($.react({
       harmony: true
     }).on('error', handleErrors))
-    .pipe(gulp.dest(DEST))
+    .pipe(gulp.dest(DEST));
 });

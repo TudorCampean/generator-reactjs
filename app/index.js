@@ -1,87 +1,62 @@
 /*jslint indent: 2, node: true, nomen: true */
 'use strict';
-var util = require('util');
-var path = require('path');
-var spawn = require('child_process').spawn;
+var yosay = require('yosay');
 var yeoman = require('yeoman-generator');
 
+module.exports = yeoman.generators.Base.extend({
+  init: function () {
 
-var ReactGenerator = module.exports = function ReactGenerator(args, options, config) {
-  yeoman.generators.Base.apply(this, arguments);
+    this.on('end', function () {
+      if (!this.options['skip-install']) {
+        this.installDependencies({
+          skipMessage: this.options['skip-install-message']
+        });
+      }
+    });
+  },
 
-  this.options = options;
-  this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
-};
+  welcome: function welcome() {
+    // welcome message
+    this.log(yosay('Out of the box I include HTML5 Boilerplate, ReactJS and Bootstrap'));
+  },
 
-util.inherits(ReactGenerator, yeoman.generators.Base);
+  files: function files() {
+    // base
+    this.template('_package.json', 'package.json');
+    this.template('_bower.json', 'bower.json');
+    this.copy('gitignore', '.gitignore');
+    this.copy('gitattributes', '.gitattributes');
 
-ReactGenerator.prototype.welcome = function welcome() {
-  // welcome message
-  console.log(this.yeoman);
-  console.log('Out of the box I include HTML5 Boilerplate, ReactJS and Bootstrap');
-};
+    // gulpfile and extras
+    this.template('Gulpfile.js','Gulpfile.js');
+    this.bulkDirectory('gulp', 'gulp');
 
-ReactGenerator.prototype.gulpfile = function gruntfile() {
-  this.template('Gulpfile.js','Gulpfile.js');
-  this.bulkDirectory('gulp', 'gulp')
-};
+    // app directory
+    this.mkdir('app');
 
-ReactGenerator.prototype.app = function app() {
-  this.mkdir('app');
-};
+    // h5bp
+    this.copy('favicon.ico', 'app/favicon.ico');
+    this.copy('404.html', 'app/404.html');
+    this.copy('robots.txt', 'app/robots.txt');
+    // index.html
+    this.copy('index.html', 'app/index.html');
 
-ReactGenerator.prototype.packageJSON = function packageJSON() {
-  this.template('_package.json', 'package.json');
-};
+    // less style
+    this.bulkDirectory('less', 'app/less');
 
-ReactGenerator.prototype.git = function git() {
-  this.copy('gitignore', '.gitignore');
-  this.copy('gitattributes', '.gitattributes');
-};
+    // scripts
+    this.bulkDirectory('scripts', 'app/scripts');
 
-ReactGenerator.prototype.h5bp = function h5bp() {
-  this.copy('favicon.ico', 'app/favicon.ico');
-  this.copy('404.html', 'app/404.html');
-  this.copy('robots.txt', 'app/robots.txt');
-};
+    // fonts
+    this.bulkDirectory('fonts', 'app/fonts');
 
-ReactGenerator.prototype.writeIndex = function writeIndex() {
-  this.copy('index.html', 'app/index.html');
-};
+    //images
+    this.bulkDirectory('images', 'app/images');
 
-ReactGenerator.prototype.styles = function styles() {
-  this.bulkDirectory('less', 'app/less')
-};
 
-ReactGenerator.prototype.scripts = function scripts() {
-  this.bulkDirectory('scripts', 'app/scripts')
-};
-
-ReactGenerator.prototype.fonts = function fonts() {
-  this.bulkDirectory('fonts', 'app/fonts')
-};
-
-ReactGenerator.prototype.images = function images() {
-  this.bulkDirectory('images', 'app/images')
-};
-
-ReactGenerator.prototype.testFiles = function testFiles() {
-  this.copy('karma.conf.coffee', 'karma.conf.coffee');
-  this.copy('testTemplate/test.coffee', 'test/test.coffee');
-  this.copy('testTemplate/specs/appSpec.coffee', 'test/specs/appSpec.coffee');
-};
-
-ReactGenerator.prototype.install = function () {
-  if (this.options['skip-install']) {
-    return;
-  }
-
-  var done = this.async();
-  this.installDependencies({
-    bower: false,
-    npm: true,
-    skipMessage: this.options['skip-install-message'],
-    skipInstall: this.options['skip-install'],
-    callback: done
-  });
-};
+    // @ToDO test files
+    // this.copy('karma.conf.coffee', 'karma.conf.coffee');
+    // this.copy('testTemplate/test.coffee', 'test/test.coffee');
+    // this.copy('testTemplate/specs/appSpec.coffee', 'test/specs/appSpec.coffee');
+  },
+});

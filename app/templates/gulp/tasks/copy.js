@@ -1,12 +1,15 @@
-var scriptsSrc = './app/scripts/**/*.js'
-var scriptsDest = 'compiled'
+/*jshint indent: 2, node: true, nomen: true, browser: true*/
+/*global gulp, $ */
 
-var fontsSrc = './app/fonts/**'
-var fontsDest = 'debug/fonts'
-var fontsDist = 'build/fonts'
+var scriptsSrc = './app/scripts/**/*.js';
+var scriptsDest = 'compiled';
 
-var htmlSrc = './app/**/*.html'
-var htmlDest = 'debug'
+var fontsSrc = './app/fonts/**';
+var fontsDest = 'debug/fonts';
+var fontsDist = 'build/fonts';
+
+var htmlSrc = './app/**/*.html';
+var htmlDest = 'debug';
 
 gulp.task('copy.scripts', function () {
   return gulp.src(scriptsSrc)

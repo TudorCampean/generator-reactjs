@@ -1,3 +1,6 @@
+/*jshint indent: 2, node: true, nomen: true, browser: true*/
+/*global gulp */
+
 /* browserify task
    ---------------
    Bundle javascripty things with browserify!
@@ -5,7 +8,7 @@
    If the watch task is running, this uses watchify instead
    of browserify for faster bundling using caching.
 */
-var gulp = require('gulp');
+
 var source = require('vinyl-source-stream');
 var browserify = require('browserify');
 var watchify = require('watchify');
@@ -42,12 +45,12 @@ gulp.task('browserify', function () {
       cache: {},
       packageCache: {},
       fullPaths: false,
-    }
+    };
     var b = browserify(options);
     if (file.vendor){
-      b.require('react', {expose: 'react'})
+      b.require('react', {expose: 'react'});
     } else {
-      b.external('react')
+      b.external('react');
     }
     b.dest = file.dest;
     bundlers.push(b);
@@ -89,7 +92,7 @@ gulp.task('browserify', function () {
     // Rebundle with watchify on changes.
     bundlers.forEach(function (bundler) {
       bundler.on('update', function () {
-        _bundle(bundler)
+        _bundle(bundler);
       });
     });
   }

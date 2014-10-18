@@ -9,9 +9,13 @@
     font-style: normal;
 }
 
+// bootstrap default variables
+@import "../../bower_components/bootstrap/less/variables.less";
+// your own variables
 @import 'variables';
 @import 'bootstrap';
-@icon-font-path: '../fonts/';
+@import "../../bower_components/bootstrap-material-design/less/material.less";
+@import "../../bower_components/bootstrap-material-design/less/ripples.less";
 
 .browsehappy {
     margin: 0.2em 0;
@@ -22,7 +26,6 @@
 
 /* Space out content a bit */
 body {
-    background-image: url(/images/carbon_fibre.png);
     background-position: initial;
     background-repeat: inherit;
 }

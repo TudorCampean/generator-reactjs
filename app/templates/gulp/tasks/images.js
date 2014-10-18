@@ -1,3 +1,6 @@
+/*jshint indent: 2, node: true, nomen: true, browser: true*/
+/*global gulp, $ */
+
 var debug = './debug/images';
 var dist = './build/images';
 
@@ -11,5 +14,5 @@ gulp.task('images', function () {
 gulp.task('images.dist', function () {
   return gulp.src('./app/images/**')
     .pipe($.imagemin()) // Optimize
-    .pipe(gulp.dest(dist))
+    .pipe(gulp.dest(dist));
 });

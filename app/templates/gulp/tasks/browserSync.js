@@ -1,10 +1,16 @@
+/*jshint indent: 2, node: true, nomen: true, browser: true*/
+/*global gulp */
+
 var browserSync = require('browser-sync');
-var gulp = require('gulp');
 
 gulp.task('browserSync', ['build'], function () {
-  browserSync.init(['debug/**'], {
+  browserSync({
     server: {
-      baseDir: ['debug']
-    }
+      baseDir: ['debug'],
+      routes: {
+        "/bower_components": "./bower_components"
+      },
+    },
+    directory: true
   });
 });

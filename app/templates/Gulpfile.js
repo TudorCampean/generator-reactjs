@@ -1,3 +1,5 @@
+/*jshint indent: 2, node: true, nomen: true, browser: true*/
+
 /*
 	Gulpfile.js
 	===========
@@ -9,7 +11,7 @@
 	To add a new task, simply add a new task file to gulp/tasks.
 */
 
-global.$ = require('gulp-load-plugins')()
-global.gulp = require('gulp')
+global.$ = require('gulp-load-plugins')();
+global.gulp = require('gulp');
 
-require('./gulp')
+require('./gulp');

@@ -1,3 +1,6 @@
+/*jshint indent: 2, node: true, nomen: true, browser: true*/
+/*global gulp */
+
 gulp.task('watch', ['setWatch', 'browserSync'], function () {
   gulp.watch('app/scripts/**/*.jsx', ['react']);
   gulp.watch('app/scripts/**/*.js', ['copy.scripts']);
