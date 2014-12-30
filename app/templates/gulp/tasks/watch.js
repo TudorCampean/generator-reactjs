@@ -1,11 +1,8 @@
-/*jshint indent: 2, node: true, nomen: true, browser: true*/
-/*global gulp */
+var config = require('../config');
 
 gulp.task('watch', ['setWatch', 'browserSync'], function () {
-  gulp.watch('app/scripts/**/*.jsx', ['react']);
-  gulp.watch('app/scripts/**/*.js', ['copy.scripts']);
-  gulp.watch('app/less/**/*.less',['less']);
-  gulp.watch('app/images/**', ['images']);
-  gulp.watch('app/**/*.html', ['copy.html']);
+  gulp.watch(config.react.sources, ['react']);
+  gulp.watch(config.less.sources,['less']);
+  gulp.watch(config.extra.sources, ['copyExtra']);
   // Note: The browserify task handles js recompiling with watchify
 });

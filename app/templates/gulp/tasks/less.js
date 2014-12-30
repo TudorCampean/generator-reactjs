@@ -1,16 +1,27 @@
-/*jshint indent: 2, node: true, nomen: true, browser: true*/
-/*global gulp, $ */
+var LessPluginCleanCSS = require("less-plugin-clean-css"),
+cleancss = new LessPluginCleanCSS({
+  aggressiveMerging : false,
+  advanced: false
+});
 
 var handleErrors = require('../util/handleErrors');
-
-var DEBUG = "debug/css";
+var config = require('../config');
 
 gulp.task('less', function () {
-  return gulp.src(['./app/less/main.less'])
+  if (global.isDistribution){
+    return gulp.src(config.less.main)
+      .pipe($.less({
+        strictMath: true,
+        plugins: [cleancss]
+      }).on('error', handleErrors))
+      .pipe(gulp.dest(config.less.dest));
+  }
+  return gulp.src(config.less.main)
     .pipe($.sourcemaps.init())
     .pipe($.less({
-      strictMath: true
+      strictMath: true,
+      plugins: [cleancss]
     }).on('error', handleErrors))
     .pipe($.sourcemaps.write('maps'))
-    .pipe(gulp.dest(DEBUG));
+    .pipe(gulp.dest(config.less.dest));
 });

@@ -1,5 +1,3 @@
-/*jshint indent: 2, node: true, nomen: true, browser: true*/
-
 var path = require("path");
 
 // Filters out non .coffee, .jsx and .js files. Prevents

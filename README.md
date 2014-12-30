@@ -9,12 +9,23 @@ Based on yeoman/generator-webapp.
 ## Features
 
 * Built-in preview server with BrowserSync
-* Mocha Unit Testing with Karma
-* Bootstrap 3.2.0 CSS framework + Bootstrap-Materrial-Design
-* Precompiled jsx files in ```./compiled``` folder make it easiear to use them server side.
+* Precompiled jsx files in `./compiled` folder make it easiear to use them server side.
 * Dependency manager - Browserify
 
 Tasks are in a gulp directory in 1-2 task(s) per file rather then a huge file.
+
+## Includes
+
+##CSS
+* [Normalize.css](http://necolas.github.io/normalize.css/)
+* [Less hat mixins](http://lesshat.madebysource.com/)
+* [Bootstrap](http://getbootstrap.com/)
+* [Google Font Roboto](https://developers.google.com/fonts/)
+
+##JS
+* [Polyfills](http://labs.ft.com/2014/09/polyfills-as-a-service/)
+* [JQuery](http://jquery.com/)
+* [ReactJS](http://facebook.github.io/react/)
 
 ## Getting Started
 
@@ -22,7 +33,6 @@ Tasks are in a gulp directory in 1-2 task(s) per file rather then a huge file.
 - Run: `yo reactjs`
 - Run `gulp` for preview
 - Run `gulp dist` for production distribution
-- Run `gulp serve` for distribution preview
 
 
 ## Options

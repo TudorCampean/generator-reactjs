@@ -1,4 +1,4 @@
 node_modules
+compiled
 dist
 .tmp
-app/bower_components

@@ -1,6 +1,3 @@
-/*jshint indent: 2, node: true, nomen: true, browser: true*/
-/*global gulp */
-
 /* browserify task
    ---------------
    Bundle javascripty things with browserify!
@@ -14,26 +11,13 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var bundleLogger = require('../util/bundleLogger');
 var handleErrors = require('../util/handleErrors');
+var config = require('../config');
 
-gulp.task('browserify', function () {
+gulp.task('browserify', function (cb) {
 
-  var destinationDirectory = './debug/scripts/';
-  var files = [
-    {
-      src: ['./compiled/vendor.js'],
-      dest: 'vendor.js',
-      vendor: true
-    },
-    {
-      src: ['./compiled/reverter/index.js'],
-      dest: 'reverter.js'
-    },
-    {
-      src: ['./compiled/app.js'],
-      dest: 'main.js'
-    },
-  ];
+  var files = config.browserify.files;
 
+  var bundledFiles = 0;
   var bundlers = [];
 
   files.forEach(function (file) {
@@ -69,10 +53,14 @@ gulp.task('browserify', function () {
     // desired output filename here.
     .pipe(source(bundler.dest))
     // Specify the output destination
-    .pipe(gulp.dest(destinationDirectory))
+    .pipe(gulp.dest(config.browserify.dest))
     // Log when bundling completes!
     .on('end', function () {
       bundleLogger.end("'" + bundler.dest + "'");
+      bundledFiles += 1;
+      if (bundledFiles === files.length){
+        cb();
+      }
     });
   }
 

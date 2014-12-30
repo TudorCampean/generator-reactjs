@@ -1,5 +1,3 @@
-/*jshint indent: 2, node: true, nomen: true, browser: true*/
-
 /* bundleLogger
    ------------
    Provides gulp style logs to the bundle method in browserify.js

@@ -1,6 +1,6 @@
 {
   "name": "generator-reactjs",
-  "version": "0.3.0-RC1",
+  "version": "1.0.0",
   "description": "Scaffold out a front-end web app with ReactJS",
   "keywords": [
     "yeoman-generator",
@@ -19,14 +19,15 @@
     "url": "git://github.com/TudorCampean/generator-reactjs.git"
   },
   "dependencies": {
-    "yeoman-generator": "^0.17.7",
+    "chalk": "^0.5.1",
+    "github": "^0.2.3",
+    "yeoman-generator": "^0.18.5",
     "yosay": "^1.0.0"
   },
   "peerDependencies": {
     "yo": ">=1.0.0"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "engines": {
     "node": ">=0.10.0"
   },

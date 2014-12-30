@@ -1,12 +1,11 @@
-/*jshint indent: 2, node: true, nomen: true, browser: true*/
-/*global gulp, $ */
+var config = require('../config');
 
 gulp.task('usemin', function() {
-  gulp.src('debug/*.html')
+  gulp.src(config.dist.sources)
     .pipe($.usemin({
-      css: [$.minifyCss(), $.rev()],
+      css: [$.rev()],
       html: [$.minifyHtml()],
       js: [$.uglify(), $.rev()]
     }))
-    .pipe(gulp.dest('build/'));
+    .pipe(gulp.dest(config.dist.dest));
 });

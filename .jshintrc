@@ -1,6 +1,6 @@
 {
 	"browser": true,
-    "node": true,
+  "node": true,
 	"esnext": true,
 	"bitwise": false,
 	"curly": false,
@@ -14,7 +14,7 @@
 	"strict": false,
 	"trailing": true,
 	"smarttabs": true,
-      "global" : {
-      "gulp": true
-    }
+  "globals" : {
+    "gulp": true
+  }
 }

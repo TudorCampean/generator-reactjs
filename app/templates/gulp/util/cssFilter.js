@@ -1,4 +1,3 @@
-/*jshint indent: 2, node: true, nomen: true, browser: true*/
 
 var path = require("path");
 

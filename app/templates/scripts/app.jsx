@@ -4,14 +4,8 @@
 
 var React = require('react');
 var Reverter = require('./reverter');
-var Nav = require('./nav');
 
-React.renderComponent(
+React.render(
   <Reverter />,
   document.getElementById('reverter')
 );
-
-React.renderComponent(
-  <Nav links={links} />,
-  document.getElementById('navigation')
-)

@@ -1,33 +1,16 @@
-@font-face {
-    font-family: 'robotolight';
-    src: url('../fonts/Roboto-Light-webfont.eot');
-    src: url('../fonts/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Roboto-Light-webfont.woff') format('woff'),
-         url('../fonts/Roboto-Light-webfont.ttf') format('truetype'),
-         url('../fonts/Roboto-Light-webfont.svg#robotolight') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
+@import (less) "../../node_modules/normalize.css/normalize.css";
+@import "mixins";
+@import "variables";
 
-// bootstrap default variables
-@import "../../bower_components/bootstrap/less/variables.less";
-// your own variables
-@import 'variables';
-@import 'bootstrap';
-@import "../../bower_components/bootstrap-material-design/less/material.less";
-@import "../../bower_components/bootstrap-material-design/less/ripples.less";
+@import "scaffolding/base.less";
+@import "scaffolding/typography.less";
+@import "../../node_modules/bootstrap/less/grid.less";
 
 .browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
-}
-
-/* Space out content a bit */
-body {
-    background-position: initial;
-    background-repeat: inherit;
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -45,15 +28,15 @@ footer {
 
 /* Custom page header */
 header {
-    border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 /* Make the masthead heading the same height as the navigation */
 header h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
 }
 
 /* Custom page footer */
@@ -68,42 +51,18 @@ footer {
 main {
   min-height: calc(100vh - 120px);
   /* flexbox, por favor */
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-pack: center;
-  -webkit-box-align: center;
-
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  -moz-box-pack: center;
-  -moz-box-align: center;
-
-  display: box;
-  box-orient: horizontal;
-  box-pack: center;
-  box-align: center;
+  .lh-display(flex);
+  .lh-justify-content(center);
+  .lh-align-items(center);
 }
 
 /* Main marketing message and sign up button */
 .jumbotron {
-    text-align: center;
-    margin: 10px;
+  text-align: center;
+  margin: 10px;
 }
 
 .jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-}
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-}
-
-.marketing p + h4 {
-    margin-top: 28px;
-}
-
-.nav-pills > li {
-  cursor: pointer;
+  font-size: 21px;
+  padding: 14px 24px;
 }
